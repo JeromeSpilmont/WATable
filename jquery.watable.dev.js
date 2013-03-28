@@ -517,7 +517,7 @@
                          w = e("<th></th>").appendTo(f);
                          switch (k.type || "none") {
                              case "number":
-                                 A = n.options.types.number.placeHolder || "10..20 =50";
+                                 A = k.placeholder ? k.placeholder : n.options.types.number.placeHolder || "10..20 =50";
                                  O = n.options.types.number.tooltip || "Values 10 to 20:<br/>10..20<br/>Values exactly 50:<br/>=50";
                                  T = e('<input placeholder="{0}" class="filter" type="text" />'.f(A));
                                  T.on("keyup", {
@@ -525,7 +525,7 @@
                                  }, n.filterChanged);
                                  break;
                              case "date":
-                                 A = n.options.types.date.placeHolder || "-7..0";
+                                 A = k.placeholder ? k.placeholder : n.options.types.date.placeHolder || "-7..0";
                                  O = n.options.types.date.tooltip || "Today:<br/>0..1<br/>A week today excluded:<br/>-7..0";
                                  T = e('<div><input placeholder="{0}" class="filter" type="text" /></div>'.f(A));
                                  if (n.options.types.date.datePicker === true || n.options.types.date.datePicker == t) {
@@ -554,14 +554,14 @@
                                  }, n.filterChanged);
                                  break;
                              case "bool":
-                                 O = n.options.types.bool.tooltip || "Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked";
+                                 O = k.placeholder ? k.placeholder : n.options.types.bool.tooltip || "Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked";
                                  T = e('<input class="filter indeterminate" checked type="checkbox" />');
                                  T.on("click", {
                                      column: C
                                  }, n.filterChanged);
                                  break;
                              case "string":
-                                 A = n.options.types.string.placeHolder || "John Doe";
+                                 A = k.placeholder ? k.placeholder : n.options.types.string.placeHolder || "John Doe";
                                  O = n.options.types.string.tooltip || "Find John Doe:<br/>John Doe<br/>Find all but John Doe:<br/>!John Doe";
                                  T = e('<input placeholder="{0}" class="filter" type="text" />'.f(A));
                                  T.on("keyup", {
