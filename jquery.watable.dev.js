@@ -37,6 +37,7 @@
              pageSizes: [10, 20, 30, 40, 50, "All"],
              actions: "",
              hidePagerOnEmpty: false,
+             hidePagerIfSingle: false,
              preFill: false,
              types: {
                  string: {},
@@ -794,6 +795,7 @@
                  }
              }
              if (h.rows.length == 0 && n.options.hidePagerOnEmpty) e(".btn-toolbar", c).remove();
+             if (h.rows.length <= n.options.pageSize && n.options.hidePagerIfSingle) e(".pagination", c).parent().remove();
              if (n.options.debug) console.log("table created in {0} ms.".f(new n.ext.XDate - r));
              if (typeof n.options.tableCreated == "function") n.options.tableCreated.call(o.get(0), {
                      table: o.get(0)
