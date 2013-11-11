@@ -1,6 +1,7 @@
 /*
- WATable 1.06
- Copyright (c) 2012 Andreas Petersson, http://wootapa-watable.appspot.com/
+ WATable 1.07
+ Copyright (c) 2012 Andreas Petersson(apesv03@gmail.com)
+ http://wootapa-watable.appspot.com/
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -21,4 +22,1194 @@
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-(function(e,t){var n=function(){var n={};var r={};n.options={};var i={url:"",urlData:"",urlPost:false,debug:false,filter:false,columnPicker:false,pageSize:10,pageSizes:[10,20,30,40,50,"All"],actions:"",hidePagerOnEmpty:false,preFill:false,types:{string:{},number:{},bool:{},date:{}}};n.ext={};n.ext.XDate=function(e,t,n,r){function i(){var t=this instanceof i?this:new i,n=arguments,r=n.length,u;typeof n[r-1]=="boolean"&&(u=n[--r],n=T(n,0,r));if(r)if(r==1)if(r=n[0],r instanceof e||typeof r=="number")t[0]=new e(+r);else if(r instanceof i){var n=t,a=new e(+r[0]);if(s(r))a.toString=_;n[0]=a}else{if(typeof r=="string"){t[0]=new e(0);e:{for(var n=r,r=u||!1,a=i.parsers,f=0,l;f<a.length;f++)if(l=a[f](n,r,t)){t=l;break e}t[0]=new e(n)}}}else t[0]=new e(M.apply(e,n)),u||(t[0]=w(t[0]));else t[0]=new e;typeof u=="boolean"&&o(t,u);return t}function s(e){return e[0].toString===_}function o(t,n,r){if(n){if(!s(t))r&&(t[0]=new e(M(t[0].getFullYear(),t[0].getMonth(),t[0].getDate(),t[0].getHours(),t[0].getMinutes(),t[0].getSeconds(),t[0].getMilliseconds()))),t[0].toString=_}else s(t)&&(t[0]=r?w(t[0]):new e(+t[0]));return t}function u(e,t,n,r,i){var s=x(y,e[0],i),e=x(b,e[0],i),i=t==1?n%12:s(1),o=!1;r.length==2&&typeof r[1]=="boolean"&&(o=r[1],r=[n]);e(t,r);o&&s(1)!=i&&(e(1,[s(1)-1]),e(2,[E(s(0),s(1))]))}function a(e,n,r,i){var r=Number(r),s=t.floor(r);e["set"+k[n]](e["get"+k[n]]()+s,i||!1);s!=r&&n<6&&a(e,n+1,(r-s)*A[n],i)}function f(e,n,r){var e=e.clone().setUTCMode(!0,!0),n=i(n).setUTCMode(!0,!0),s=0;if(r==0||r==1){for(var o=6;o>=r;o--)s/=A[o],s+=y(n,!1,o)-y(e,!1,o);r==1&&(s+=(n.getFullYear()-e.getFullYear())*12)}else r==2?(r=e.toDate().setUTCHours(0,0,0,0),s=n.toDate().setUTCHours(0,0,0,0),s=t.round((s-r)/864e5)+(n-s-(e-r))/864e5):s=(n-e)/[36e5,6e4,1e3,1][r-3];return s}function l(n){var r=n(0),i=n(1),n=n(2),i=new e(M(r,i,n)),s=c(r),n=s;i<s?n=c(r-1):(r=c(r+1),i>=r&&(n=r));return t.floor(t.round((i-n)/864e5)/7)+1}function c(t){t=new e(M(t,0,4));t.setUTCDate(t.getUTCDate()-(t.getUTCDay()+6)%7);return t}function h(e,t,n,i){var s=x(y,e,i),o=x(b,e,i),n=c(n===r?s(0):n);i||(n=w(n));e.setTime(+n);o(2,[s(2)+(t-1)*7])}function p(e,t,n,r,s){var o=i.locales,u=o[i.defaultLocale]||{},a=x(y,e,s),n=(typeof n=="string"?o[n]:n)||{};return d(e,t,function(e){if(r)for(var t=(e==7?2:e)-1;t>=0;t--)r.push(a(t));return a(e)},function(e){return n[e]||u[e]},s)}function d(e,t,n,i,s){for(var o,u,a="";o=t.match(O);){a+=t.substr(0,o.index);if(o[1]){u=a;for(var a=e,f=o[1],l=n,c=i,h=s,p=f.length,m=void 0,g="";p>0;)m=v(a,f.substr(0,p),l,c,h),m!==r?(g+=m,f=f.substr(p),p=f.length):p--;a=u+(g+f)}else o[3]?(u=d(e,o[4],n,i,s),parseInt(u.replace(/\D/g,""),10)&&(a+=u)):a+=o[7]||"'";t=t.substr(o.index+o[0].length)}return a+t}function v(e,n,r,s,o){var u=i.formatters[n];if(typeof u=="string")return d(e,u,r,s,o);else if(typeof u=="function")return u(e,o||!1,s);switch(n){case"fff":return C(r(6),3);case"s":return r(5);case"ss":return C(r(5));case"m":return r(4);case"mm":return C(r(4));case"h":return r(3)%12||12;case"hh":return C(r(3)%12||12);case"H":return r(3);case"HH":return C(r(3));case"d":return r(2);case"dd":return C(r(2));case"ddd":return s("dayNamesShort")[r(7)]||"";case"dddd":return s("dayNames")[r(7)]||"";case"M":return r(1)+1;case"MM":return C(r(1)+1);case"MMM":return s("monthNamesShort")[r(1)]||"";case"MMMM":return s("monthNames")[r(1)]||"";case"yy":return(r(0)+"").substring(2);case"yyyy":return r(0);case"t":return m(r,s).substr(0,1).toLowerCase();case"tt":return m(r,s).toLowerCase();case"T":return m(r,s).substr(0,1);case"TT":return m(r,s);case"z":case"zz":case"zzz":return o?n="Z":(s=e.getTimezoneOffset(),e=s<0?"+":"-",r=t.floor(t.abs(s)/60),s=t.abs(s)%60,o=r,n=="zz"?o=C(r):n=="zzz"&&(o=C(r)+":"+C(s)),n=e+o),n;case"w":return l(r);case"ww":return C(l(r));case"S":return n=r(2),n>10&&n<20?"th":["st","nd","rd"][n%10-1]||"th"}}function m(e,t){return e(3)<12?t("amDesignator"):t("pmDesignator")}function g(e){return!isNaN(+e[0])}function y(e,t,n){return e["get"+(t?"UTC":"")+k[n]]()}function b(e,t,n,r){e["set"+(t?"UTC":"")+k[n]].apply(e,r)}function w(t){return new e(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds(),t.getUTCMilliseconds())}function E(t,n){return 32-(new e(M(t,n,32))).getUTCDate()}function S(e){return function(){return e.apply(r,[this].concat(T(arguments)))}}function x(e){var t=T(arguments,1);return function(){return e.apply(r,t.concat(T(arguments)))}}function T(e,t,i){return n.prototype.slice.call(e,t||0,i===r?e.length:i)}function N(e,t){for(var n=0;n<e.length;n++)t(e[n],n)}function C(e,t){t=t||2;for(e+="";e.length<t;)e="0"+e;return e}var k="FullYear,Month,Date,Hours,Minutes,Seconds,Milliseconds,Day,Year".split(","),L=["Years","Months","Days"],A=[12,31,24,60,60,1e3,1],O=/(([a-zA-Z])\2*)|(\((('.*?'|\(.*?\)|.)*?)\))|('(.*?)')/,M=e.UTC,_=e.prototype.toUTCString,D=i.prototype;D.length=1;D.splice=n.prototype.splice;D.getUTCMode=S(s);D.setUTCMode=S(o);D.getTimezoneOffset=function(){return s(this)?0:this[0].getTimezoneOffset()};N(k,function(e,t){D["get"+e]=function(){return y(this[0],s(this),t)};t!=8&&(D["getUTC"+e]=function(){return y(this[0],!0,t)});t!=7&&(D["set"+e]=function(e){u(this,t,e,arguments,s(this));return this},t!=8&&(D["setUTC"+e]=function(e){u(this,t,e,arguments,!0);return this},D["add"+(L[t]||e)]=function(e,n){a(this,t,e,n);return this},D["diff"+(L[t]||e)]=function(e){return f(this,e,t)}))});D.getWeek=function(){return l(x(y,this,!1))};D.getUTCWeek=function(){return l(x(y,this,!0))};D.setWeek=function(e,t){h(this,e,t,!1);return this};D.setUTCWeek=function(e,t){h(this,e,t,!0);return this};D.addWeeks=function(e){return this.addDays(Number(e)*7)};D.diffWeeks=function(e){return f(this,e,2)/7};i.parsers=[function(t,n,r){if(t=t.match(/^(\d{4})(-(\d{2})(-(\d{2})([T ](\d{2}):(\d{2})(:(\d{2})(\.(\d+))?)?(Z|(([-+])(\d{2})(:?(\d{2}))?))?)?)?)?$/)){var i=new e(M(t[1],t[3]?t[3]-1:0,t[5]||1,t[7]||0,t[8]||0,t[10]||0,t[12]?Number("0."+t[12])*1e3:0));t[13]?t[14]&&i.setUTCMinutes(i.getUTCMinutes()+(t[15]=="-"?1:-1)*(Number(t[16])*60+(t[18]?Number(t[18]):0))):n||(i=w(i));return r.setTime(+i)}}];i.parse=function(e){return+i(""+e)};D.toString=function(e,t,n){return e===r||!g(this)?this[0].toString():p(this,e,t,n,s(this))};D.toUTCString=D.toGMTString=function(e,t,n){return e===r||!g(this)?this[0].toUTCString():p(this,e,t,n,!0)};D.toISOString=function(){return this.toUTCString("yyyy-MM-dd'T'HH:mm:ss(.fff)zzz")};i.defaultLocale="";i.locales={"":{monthNames:"January,February,March,April,May,June,July,August,September,October,November,December".split(","),monthNamesShort:"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(","),dayNames:"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(","),dayNamesShort:"Sun,Mon,Tue,Wed,Thu,Fri,Sat".split(","),amDesignator:"AM",pmDesignator:"PM"}};i.formatters={i:"yyyy-MM-dd'T'HH:mm:ss(.fff)",u:"yyyy-MM-dd'T'HH:mm:ss(.fff)zzz"};N("getTime,valueOf,toDateString,toTimeString,toLocaleString,toLocaleDateString,toLocaleTimeString,toJSON".split(","),function(e){D[e]=function(){return this[0][e]()}});D.setTime=function(e){this[0].setTime(e);return this};D.valid=S(g);D.clone=function(){return new i(this)};D.clearTime=function(){return this.setHours(0,0,0,0)};D.toDate=function(){return new e(+this[0])};i.now=function(){return+(new e)};i.today=function(){return(new i).clearTime()};i.UTC=M;i.getDaysInMonth=E;if(typeof module!=="undefined"&&module.exports)module.exports=i;return i}(Date,Math,Array);var s=null;var o=null;var u=null;var a=null;var f=null;var l=null;var c=null;var h=null;var p=1;var d=null;var v=null;var m=null;var g=false;var y=null;var b={};var w=null;var E=null;var S={};var x=false;n.init=function(){s=n.options.id;if(String(n.options.pageSize).toLowerCase()=="auto"){n.options[option]=-1;d=n.options.pageSize;e(window).on("resize",n.windowResized)}n.options.types.string=(n.options.types||{}).string||{};n.options.types.number=(n.options.types||{}).number||{};n.options.types.bool=(n.options.types||{}).bool||{};n.options.types.date=(n.options.types||{}).date||{};if(n.options.preFill){var t={cols:{dummy:{index:1,friendly:" ",type:"none"}},rows:[]};for(var r=0;r<n.options.pageSize;r++)t.rows.push({dummy:" "});n.setData(t)}n.update()};n.createTable=function(){var r=new n.ext.XDate;if(o==null){u=l=c=null;o=e('<table class="watable table table-striped table-hover table-bordered table-condensed"></table>').appendTo(s)}if(u==null){o.find("thead").remove();a=f=null;u=e("<thead></thead>").prependTo(o)}var i=Object.keys(h.cols).sort(function(e,t){return h.cols[e].index-h.cols[t].index});if(a==null){u.find(".sort i").tooltip("hide");u.find(".sort").remove();a=e('<tr class="sort"></tr>').prependTo(u);if(E&&!h.cols[E].hidden){var y=x?"checked":"";var w=e("<th></th>").appendTo(a);var T=e('<input {0} class="checkToggle" type="checkbox" />'.f(y)).appendTo(w);T.on("change",n.checkToggleChanged)}for(var N=0;N<i.length;N++){var C=i[N];var k=h.cols[C];if(!k.hidden){var w=e("<th></th>").appendTo(a);var L=e('<a class="pull-left" href="#">{0}</a>'.f(k.friendly||C));L.on("click",{column:C},n.columnClicked).appendTo(w);if(k.tooltip)e('<i class="icon-info-sign"></i>').tooltip({title:k.tooltip,html:true,container:"body",placement:"top",delay:{show:500,hide:100}}).appendTo(L);if(C==m){if(g)e('<i class="icon-chevron-down pull-right"></i>').appendTo(w);else e('<i class="icon-chevron-up pull-right"></i>').appendTo(w)}}}}if(f==null&&n.options.filter){u.find(".filter").remove();f=e('<tr class="filter"></tr>').appendTo(u);var w;var T;var A="";var O="";if(E&&!h.cols[E].hidden){O=n.options.types.bool.tooltip||"Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked";var w=e("<th></th>").appendTo(f);var T=e('<input class="filter indeterminate" checked type="checkbox" />').appendTo(w);e.map(b,function(e,t){if(t=="unique"){if(e.filter)T.prop("checked",true).removeClass("indeterminate");else if(!e.filter)T.prop("checked",false).removeClass("indeterminate");else if(e.filter=="")T.addClass("indeterminate")}});O=O.trim();if(O)T.tooltip({title:O,html:true,container:"body",trigger:"hover",placement:"top",delay:{show:500,hide:100}});T.on("click",{column:"unique"},n.filterChanged)}for(var N=0;N<i.length;N++){var C=i[N];var k=h.cols[C];k.filter=k.filter===false?false:true;if(!k.hidden){w=e("<th></th>").appendTo(f);switch(k.type||"none"){case"number":A=n.options.types.number.placeHolder||"10..20 =50";O=n.options.types.number.tooltip||"Values 10 to 20:<br/>10..20<br/>Values exactly 50:<br/>=50";T=e('<input placeholder="{0}" class="filter" type="text" />'.f(A));T.on("keyup",{column:C},n.filterChanged);break;case"date":A=n.options.types.date.placeHolder||"-7..0";O=n.options.types.date.tooltip||"Today:<br/>0..1<br/>A week today excluded:<br/>-7..0";T=e('<div><input placeholder="{0}" class="filter" type="text" /></div>'.f(A));if(n.options.types.date.datePicker===true||n.options.types.date.datePicker==t){if(e().datepicker){T.addClass("date-wrap");var M=(new n.ext.XDate(false)).setHours(0,0,0,0).toString("yyyy-MM-dd");var _=e('<div style="float:right" class="date" data-date="{0}" data-date-format="{1}" />'.f(M,"yyyy-mm-dd")).appendTo(T);e('<input style="display:none" type="text"  />').appendTo(_);e('<span class="add-on"><i class="icon-chevron-right"></i></span>').on("click",{op:"l"},n.dpOpChanged).appendTo(_);e('<span class="add-on"><i class="icon-chevron-left"></i></span>').on("click",{op:"r"},n.dpOpChanged).appendTo(_);_.datepicker({weekStart:1});_.on("changeDate",{column:C,input:e("input.filter",T)},n.dpClicked)}else if(n.options.debug)console.log("datepicker plugin not found")}T.on("keyup","input.filter",{column:C},n.filterChanged);break;case"bool":O=n.options.types.bool.tooltip||"Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked";T=e('<input class="filter indeterminate" checked type="checkbox" />');T.on("click",{column:C},n.filterChanged);break;case"string":A=n.options.types.string.placeHolder||"John Doe";O=n.options.types.string.tooltip||"Find John Doe:<br/>John Doe<br/>Find all but John Doe:<br/>!John Doe";T=e('<input placeholder="{0}" class="filter" type="text" />'.f(A));T.on("keyup",{column:C},n.filterChanged);break;case"none":T=e("<div> </div>");break}O=O.trim();if(O)T.tooltip({title:O,html:true,container:"body",trigger:"hover",placement:"top",delay:{show:500,hide:100}});if(T&&k.filter){e.map(b,function(e,t){if(t==C){if(e.col.type=="bool"){if(e.filter)T.prop("checked",true).removeClass("indeterminate");else if(!e.filter)T.prop("checked",false).removeClass("indeterminate");else if(e.filter=="")T.addClass("indeterminate")}else T.val(e.filter)}});T.appendTo(w)}}}}if(l==null){o.find("tbody").remove();l=e("<tbody></tbody>").insertAfter(u);l.on("change",".unique",n.rowChecked);l.on("click","td",n.rowClicked);if(n.options.pageSize==-1)h.toRow=h.rows.length;else{h.toRow=h.fromRow+n.options.pageSize;if(h.toRow>h.rows.length)h.toRow=h.rows.length}var D=0;e.each(h.rows.slice(h.fromRow,h.toRow),function(r,u){var a=e("<tr></tr>").appendTo(l);if(E&&!h.cols[E].hidden){var f=S[u[E]]!=t?"checked":"";var c=u["checkable"]===false?"disabled":"";var p=e("<td></td>").appendTo(a);var d=e('<input class="unique" {0} {1} type="checkbox" />'.f(f,c)).appendTo(p)}for(var v=0;v<i.length;v++){var m=i[v];var g=u[m]||"";if(!h.cols[m])return;if(h.cols[m].unique)a.data("unique",g);if(!h.cols[m].hidden){var p=e("<td></td>").appendTo(a);p.data("column",m);var y=u[m+"Format"]||h.cols[m].format||"{0}";switch(h.cols[m].type){case"string":case"none":p.html(y.f(g));break;case"number":g=Number(g)||0;var b=!isNaN(h.cols[m].decimals);if(b)p.html(y.f(g.toFixed(h.cols[m].decimals)));else{(g||0)%1===0?p.html(y.f(g)):p.html(y.f(g.toFixed(n.options.types.number.decimals||2)))}break;case"date":g=(new n.ext.XDate(g,n.options.types.date.utc===true)).toString(n.options.types.date.format||"yyyy-MM-dd HH:mm:ss");p.html(y.f(g));break;case"bool":e('<input type="checkbox" {0} disabled />'.f(g?"checked":"")).appendTo(p);break}}}D++;if(n.options.pageSize==-1){if(!n.elementInViewport(s)){var w=o.find("tfoot").length;if(!w&&a.prev()){a.prev().remove();D--}if(!w&&a.prev()){a.prev().remove();D--}if(!w&&a.prev()){a.prev().remove();D--}a.remove();D--;h.toRow=h.fromRow+D;return false}}else{if(D>=n.options.pageSize){h.toRow=h.fromRow+D;return false}}});if(p==1){d=D;v=Math.round(Math.ceil(h.rows.length/d))}if(p==v){while(D<d){var P=e("<tr></tr>").appendTo(l);if(E&&!h.cols[E].hidden){var H=e("<td></td>").appendTo(P);var T=e('<input disabled type="checkbox" />').appendTo(H)}e.each(h.cols,function(t,n){if(!n.hidden){e("<td> </td>").appendTo(P)}});D++}}}if(c==null){o.find("tfoot").remove();c=e("<tfoot></tfoot>").insertAfter(l);var B=e("<tr></tr>").appendTo(c);var j=e('<td colspan="999"></td>').appendTo(B);if(h.rows.length>0)e("<p>Rows {0}-{1} of {2}</p>".f(h.fromRow+1,Math.min(h.toRow,h.rows.length),h.rows.length)).appendTo(j);else{e("<p>No results</p>").appendTo(j);v=0}var F=p-2;var I=p+2;if(I>v){var q=I-v;I=v;F-=q}if(F<1)F=1;if(I<5)I=5;var R=e('<div class="btn-toolbar"></div>').appendTo(j);var U=e('<div class="btn-group"></div>').appendTo(R);var z=e('<div class="pagination"></div>').appendTo(U);var W=e("<ul></ul>").appendTo(z);e('<li class="{0}"><a href="#">«</a></li>'.f(p==1?"disabled":"")).on("click",{pageIndex:p-1},n.pageChanged).appendTo(W);for(var N=F;N<=I;N++){var L=null;if(N!=p)L=e('<li class="{1}"><a href="#">{0}</a></li>'.f(N,N>v?"disabled":""));if(N==p)L=e('<li class="active"><a href="#">{0}</a></li>'.f(N));if(L!=null){L.on("click",{pageIndex:N},n.pageChanged);L.appendTo(W)}}e('<li class="{0}"><a href="#">»</a></li>'.f(p==v?"disabled":"")).on("click",{pageIndex:p+1},n.pageChanged).appendTo(W);if(n.options.pageSizes.length){var X=e('<div class="btn-group dropup pagesize"></div>').appendTo(R);var V=e('<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">Rows </button>').appendTo(X);var J=e('<span class="caret"></span>').appendTo(V);var K=e('<ul class="dropdown-menu">').appendTo(X);e.each(n.options.pageSizes,function(t,n){var r=e("<li></li>").appendTo(K);e('<a href="#">{0}</a>'.f(n)).appendTo(r)});X.on("click","a",n.pageSizeChanged)}if(n.options.columnPicker){var X=e('<div class="btn-group dropup columnpicker"></div>').appendTo(R);var V=e('<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">Columns </button>').appendTo(X);var J=e('<span class="caret"></span>').appendTo(V);var K=e('<ul class="dropdown-menu">').appendTo(X);e.each(h.cols,function(t,n){if(n.type!="unique"){var r=e("<li></li>").appendTo(K);e('<input {0} type="checkbox" title="{1}" value="{1}" > {2}</input>'.f(n.hidden?"":"checked",t,n.friendly||t)).appendTo(r)}});X.on("click","input",n.columnPickerClicked)}if(n.options.actions){var X=e('<div class="btn-group dropup actions"></div>').appendTo(R);var V=e('<button class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-list"></i> </button>').appendTo(X);var J=e('<span class="caret"></span>').appendTo(V);var K=e('<ul class="dropdown-menu">').appendTo(X);if(n.options.actions.filter){var Q=e("<li></li>").appendTo(K);e('<input {0} type="checkbox" > Filter</input>'.f(n.options.filter?"checked":"")).appendTo(Q);Q.on("click","input",function(e){n.options.filter=!n.options.filter;u=null;n.createTable()})}if(n.options.actions.columnPicker){var Q=e("<li></li>").appendTo(K);e('<input {0} type="checkbox" > ColumnPicker</input>'.f(n.options.columnPicker?"checked":"")).appendTo(Q);Q.on("click","input",function(e){n.options.columnPicker=!n.options.columnPicker;c=null;n.createTable()})}if(n.options.actions.custom){e.each(n.options.actions.custom,function(t,n){var r=e("<li></li>").appendTo(K);e(n).appendTo(r)})}}}if(h.rows.length==0&&n.options.hidePagerOnEmpty)e(".btn-toolbar",c).remove();if(n.options.debug)console.log("table created in {0} ms.".f(new n.ext.XDate-r));if(typeof n.options.tableCreated=="function")n.options.tableCreated.call(o.get(0),{table:o.get(0)})};n.update=function(t,r,i){if(!n.options.url){console.log("no url found");return}if(n.options.debug)console.log("requesting data from url:{0} data:{1}".f(n.options.url,JSON.stringify(n.options.urlData)||""));var s=new n.ext.XDate;e.ajax({url:n.options.url,type:n.options.urlPost?"POST":"GET",dataType:"json",contentType:"application/json; charset=utf-8",data:n.options.urlData,async:true,success:function(e){if(n.options.debug)console.log("request finished in {0} ms.".f(new n.ext.XDate-s));if(e.d&&e.d.cols)n.setData(e.d,r,i);else n.setData(e,r,i);if(typeof t=="function")t.call(this)},error:function(e){console.log("request error: ".f(e))}})};n.setData=function(r,i,s){var o=e.extend(true,{},r);o.fromRow=h&&h.fromRow||0;o.toRow=h&&h.toRow||0;if(i||false)o.cols=h.cols;h=o;h.rowsOrg=h.rows;if(p>1){h.toRow=Math.min(h.rows.length,h.toRow);h.fromRow=h.toRow-d;h.fromRow=Math.max(h.fromRow,0);p=Math.ceil(h.fromRow/d)+1;v=Math.ceil(h.rows.length/d)}else{h.fromRow=0;if(n.options.pageSize!=-1)h.toRow=h.fromRow+n.options.pageSize;h.toRow=Math.max(h.toRow,h.rows.length)}e.each(h.cols,function(e,t){if(!m&&t.sortOrder){m=e;g=t.sortOrder!="asc"}if(!t.type)h.cols[e].type="none";if(t.unique)E=e;if(!t.index)h.cols[e].index=new n.ext.XDate;t.column=e});if(E){h.cols["unique"]={column:"unique",type:"unique",index:-1,hidden:true}}if(s===true||s===t)S=[];else{for(var a in S)S[a]=n.getRow(a)}if(E){e.each(h.rows,function(e,t){if(t.checked===true)S[t[E]]=t})}u=null;l=null;c=null;n.filter();n.sort();n.createTable()};n.filter=function(){if(!n.options.filter)return;if(Object.keys(b).length==0)return;else h.rows=e.extend(true,{},h.rowsOrg);var t=new n.ext.XDate;e.each(b,function(t,r){if(n.options.debug)console.log("filtering on text:{0} col:{1} type:{2} ".f(r.filter,r.col.column,r.col.type));switch(r.col.type){case"string":h.rows=e.map(h.rows,function(e){var n=String(e[t]);var i=r.filter.toLowerCase();var s=i.charAt(0)=="!";if(s)i=i.substring(1);var o=n.toLowerCase().indexOf(i);if(o==-1&&s)return e;else if(o>=0&&!s){if(!e[t+"Format"]&&!r.col.format){var u=n.substring(0,o);var a=n.substring(o,o+r.filter.length);var f=n.substring(o+r.filter.length,e[t].length);e[t+"Format"]='<span>{0}<span class="filter">{1}</span>{2}</span>'.f(u,a,f)}return e}});break;case"number":case"date":h.rows=e.map(h.rows,function(i){var s=r.filter.replace(/\s+/gi," ").split(" ");s=s.filter(function(e){return e});var o=[">=","<=","..",">","<","="];var u=0;var a=true;e.each(s,function(e,s){for(var f=0;f<o.length;f++){var l=o[f];var c=s.indexOf(l);var h=s.substring(0,c);var p=s.substring(c+l.length);if(c==-1)continue;a=h.length+p.length==0;h=parseFloat(h);p=parseFloat(p);if(isNaN(h))h=Number.NEGATIVE_INFINITY;if(isNaN(p))p=Number.MAX_VALUE;if(r.col.type=="date"){var d=(new n.ext.XDate(n.options.types.date.utc===true)).setHours(0,0,0,0);h=d-h*-1*60*60*24*1e3;p=d-p*-1*60*60*24*1e3}switch(l){case">":if(i[t]>p)u++;break;case">=":if(i[t]>=p)u++;break;case"<":if(i[t]<p)u++;break;case"<=":if(i[t]<=p)u++;break;case"=":if(i[t]==p)u++;break;case"..":if(r.col.type=="date"){if(i[t]>=h&&i[t]<p)u++}else{if(i[t]>=h&&i[t]<=p)u++}break;default:a=true}break}});if(s.length==1&&a||u>0&&a||u==s.length||r.filter=="")return i});break;case"bool":h.rows=e.map(h.rows,function(e){if(r.filter==="")return e;if(Boolean(e[t])&&r.filter||!Boolean(e[t])&&!r.filter)return e});break;case"unique":h.rows=e.map(h.rows,function(e){if(r.filter==="")return e;var t=e[E];var n=S[t]?S[t][E]:"";if(r.filter&&t===n||!r.filter&&n==="")return e});break}if(r.filter==="")delete b[r.col.column]});if(n.options.debug)console.log("filtering finished in {0} ms.".f(new n.ext.XDate-t));p=1;h.fromRow=0;l=null;c=null};n.sort=function(){if(!m)return;var e=new n.ext.XDate;if(n.options.debug)console.log("sorting on col:{0} order:{1}".f(m,g?"desc":"asc"));var t=h.cols[m].type=="string";h.rows=h.rows.sort(function(e,n){if(t){if(String(e[m]).toLowerCase()==String(n[m]).toLowerCase())return 0;if(String(e[m]).toLowerCase()>String(n[m]).toLowerCase())return g?-1:1;else return g?1:-1}else{if(e[m]==n[m])return 0;if(e[m]>n[m])return g?-1:1;else return g?1:-1}});if(n.options.debug)console.log("sorting finished in {0} ms.".f(new n.ext.XDate-e))};n.elementInViewport=function(e){var t=e.get(0).getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=window.innerHeight&&t.right<=window.innerWidth};n.getRow=function(t){var r=new n.ext.XDate;var i;e.each(h.rowsOrg,function(e,n){if(n[E]==t){i=n;return false}});if(n.options.debug)console.log("row lookup finished in {0} ms.".f(new n.ext.XDate-r));return i};n.filterChanged=function(t){if(w!=null){clearTimeout(w);if(n.options.debug)console.log("filtering cancelled")}var r=this.value;var i=h.cols[t.data.column];var s=200;if(i.type=="bool"||i.type=="unique"){s=0;var o=e(this);var u="indeterminate";if(o.hasClass(u)){t.preventDefault();o.removeClass(u);r=true}else{if(!o.is(":checked")){r=false}else{o.addClass(u);r=""}}}b[i.column]={filter:r,col:i};w=setTimeout(function(){w=null;n.filter();n.sort();n.createTable()},s)};n.pageChanged=function(e){e.preventDefault();if(e.data.pageIndex<1||e.data.pageIndex>v)return;p=e.data.pageIndex;if(n.options.debug)console.log("paging to index:{0}".f(p));h.fromRow=(p-1)*d;h.toRow=h.fromRow+d;if(h.toRow>h.rows.length)h.toRow=h.rows.length;if(typeof n.options.pageChanged=="function"){n.options.pageChanged.call(e.target,{event:e,page:p})}l=null;c=null;n.createTable()};n.pageSizeChanged=function(t){t.preventDefault();var r=e(this).text().toLowerCase();if(n.options.debug)console.log("pagesize changed to:{0}".f(r));e(window).off("resize",n.windowResized);if(r=="all")n.options.pageSize=h.rows.length;else if(r=="auto"){n.options.pageSize=-1;e(window).on("resize",n.windowResized)}else n.options.pageSize=parseInt(r);p=1;h.fromRow=0;h.toRow=h.fromRow+n.options.pageSize;if(h.toRow>h.rows.length)h.toRow=h.rows.length;if(typeof n.options.pageSizeChanged=="function"){n.options.pageSizeChanged.call(t.target,{event:t,pageSize:n.options.pageSize})}l=null;c=null;n.createTable()};n.columnClicked=function(e){e.preventDefault();if(n.options.debug)console.log("col:{0} clicked".f(e.data.column));if(m==e.data.column)g=!g;m=e.data.column;if(typeof n.options.columnClicked=="function"){n.options.columnClicked.call(e.target,{event:e,column:h.cols[m],descending:g})}a=null;l=null;n.sort();n.createTable()};n.columnPickerClicked=function(t){t.stopPropagation();var r=e(this);var i=r.val();if(n.options.debug)console.log("col:{0} {1}".f(i,r.is(":checked")?"checked":"unchecked"));h.cols[i].hidden=!h.cols[i].hidden;h.cols[i].index=new n.ext.XDate;u=null;l=null;n.createTable()};n.checkToggleChanged=function(t){t.preventDefault();var r=e(this);if(r.is(":checked")){var i=new n.ext.XDate;e.each(h.rows,function(e,t){var n=h.rows[e];if(n.checkable===false)return;S[t[E]]=n});if(n.options.debug)console.log("{0} rows checked in {1} ms.".f(h.rows.length,new n.ext.XDate-i));x=true}else{var i=new n.ext.XDate;for(var s in S){var o=S[s];if(o.checkable===false)continue;else delete S[s]}if(n.options.debug)console.log("{0} rows unchecked in {1} ms.".f(h.rows.length,new n.ext.XDate-i));x=false}l=null;n.createTable()};n.rowChecked=function(t){t.preventDefault();var r=e(this);var i=r.closest("tr").data("unique");if(n.options.debug)console.log("row({0}) {1}".f(i,r.is(":checked")?"checked":"unchecked"));if(r.is(":checked"))S[i]=n.getRow(i);else delete S[i]};n.rowClicked=function(t){if(!E){if(n.options.debug)console.log("no unique column specified");return}var r=e(this);var i=h.cols[r.data("column")];var s=r.closest("tr").data("unique");var o=n.getRow(s);var u=r.closest("tr").find(".unique").is(":checked");if(typeof n.options.rowClicked=="function")n.options.rowClicked.call(t.target,{event:t,row:o,column:i,checked:u})};n.dpOpChanged=function(e){if(n.options.debug)console.log("dp oper:{0} clicked".f(e.data.op));e.preventDefault();y=e.data.op};n.dpClicked=function(t){if(n.options.debug)console.log("dp date:{0} clicked".f((new n.ext.XDate(t.date,n.options.types.date.utc===true)).toString("yyyy-MM-dd")));t.preventDefault();var r=(new n.ext.XDate(false)).setHours(0,0,0,0);var i=Math.floor(t.date/(60*60*24*1e3))-Math.floor(r/(60*60*24*1e3));var s=e(t.data.input);var o="..";var u=s.val().indexOf(o);var a=s.val().substring(0,u);var f=s.val().substring(u+o.length);if(y=="l")a=i;if(y=="r")f=i;s.val("{0}{1}{2}".f(a,o,f));e(this).datepicker("hide");s.trigger("keyup")};n.windowResized=function(e){if(n.options.debug)console.log("window resized");p=1;h.fromRow=0;l=null;c=null;n.createTable()};r.init=function(t){if(n.options.debug)console.log("watable initialization...");e.extend(n.options,i,t);n.init();return r};r.update=function(e,t,i){if(n.options.debug)console.log("publ.update called");n.update(e,t,i);return r};r.getData=function(t,r){if(n.options.debug)console.log("publ.getData called");t=t||false;r=r||false;var i=e.extend(true,{},h);delete i.cols["unique"];if(!r){delete i.rows;i.rows=i.rowsOrg}delete i.rowsOrg;delete i.fromRow;delete i.toRow;if(t){delete i.rows;i.rows=e.map(S,function(e,t){return e})}return i};r.setData=function(e,t,i){if(n.options.debug)console.log("publ.setData called");n.setData(e,t,i);return r};r.option=function(e,i){if(n.options.debug)console.log("publ.option called");if(i==t)return n.options[e];n.options[e]=i;u=null;l=null;c=null;n.createTable();return r};return r};e.fn.WATable=function(t){t=t||{};return this.each(function(){t.id=this;e(this).data("WATable",(new n).init(t))})};String.prototype.format=String.prototype.f=function(){var e=this,t=arguments.length;while(t--)e=e.replace(new RegExp("\\{"+t+"\\}","gm"),arguments[t]);return e}})(jQuery);
+(function ($, undefined) {
+
+    var WATable = function () {
+
+        var priv = {}; //private api
+        var publ = {}; //public api
+
+        priv.options = {};
+        var defaults = {
+            url: '',  //webservice url
+            urlData: '', //webservice params
+            urlPost: false, //use POST instead of GET
+            debug: false, //prints debug info to console
+            filter: false, //show filter row
+            columnPicker: false, //show columnpicker
+            checkboxes: false, //show body checkboxes
+            actions: '', //holds action links
+            pageSize: 10, //current pagesize
+            pageSizes: [10, 20, 30, 40, 50, 'All'], //available pagesizes
+            hidePagerOnEmpty: false, //removes pager if no rows
+            preFill: false, //prefill table with empty rows
+            types: { //type specific options
+                string: {},
+                number: {},
+                bool: {},
+                date: {}
+            }
+        };
+
+        /* bundled scripts */
+        priv.ext = {};
+        priv.ext.XDate = /* xdate 0.7 */ function(a,b,c,d){function e(){var b=this instanceof e?this:new e,c=arguments,d=c.length,h;typeof c[d-1]=="boolean"&&(h=c[--d],c=y(c,0,d));if(d)if(d==1)if(d=c[0],d instanceof a||typeof d=="number")b[0]=new a(+d);else if(d instanceof e){var c=b,i=new a(+d[0]);if(f(d))i.toString=G;c[0]=i}else{if(typeof d=="string"){b[0]=new a(0);a:{for(var c=d,d=h||!1,i=e.parsers,j=0,k;j<i.length;j++)if(k=i[j](c,d,b)){b=k;break a}b[0]=new a(c)}}}else b[0]=new a(F.apply(a,c)),h||(b[0]=u(b[0]));else b[0]=new a;typeof h=="boolean"&&g(b,h);return b}function f(a){return a[0].toString===G}function g(b,c,d){if(c){if(!f(b))d&&(b[0]=new a(F(b[0].getFullYear(),b[0].getMonth(),b[0].getDate(),b[0].getHours(),b[0].getMinutes(),b[0].getSeconds(),b[0].getMilliseconds()))),b[0].toString=G}else f(b)&&(b[0]=d?u(b[0]):new a(+b[0]));return b}function h(a,b,c,d,e){var f=x(s,a[0],e),a=x(t,a[0],e),e=b==1?c%12:f(1),g=!1;d.length==2&&typeof d[1]=="boolean"&&(g=d[1],d=[c]);a(b,d);g&&f(1)!=e&&(a(1,[f(1)-1]),a(2,[v(f(0),f(1))]))}function i(a,c,d,e){var d=Number(d),f=b.floor(d);a["set"+B[c]](a["get"+B[c]]()+f,e||!1);f!=d&&c<6&&i(a,c+1,(d-f)*D[c],e)}function j(a,c,d){var a=a.clone().setUTCMode(!0,!0),c=e(c).setUTCMode(!0,!0),f=0;if(d==0||d==1){for(var g=6;g>=d;g--)f/=D[g],f+=s(c,!1,g)-s(a,!1,g);d==1&&(f+=(c.getFullYear()-a.getFullYear())*12)}else d==2?(d=a.toDate().setUTCHours(0,0,0,0),f=c.toDate().setUTCHours(0,0,0,0),f=b.round((f-d)/864e5)+(c-f-(a-d))/864e5):f=(c-a)/[36e5,6e4,1e3,1][d-3];return f}function k(c){var d=c(0),e=c(1),c=c(2),e=new a(F(d,e,c)),f=l(d),c=f;e<f?c=l(d-1):(d=l(d+1),e>=d&&(c=d));return b.floor(b.round((e-c)/864e5)/7)+1}function l(b){b=new a(F(b,0,4));b.setUTCDate(b.getUTCDate()-(b.getUTCDay()+6)%7);return b}function m(a,b,c,e){var f=x(s,a,e),g=x(t,a,e),c=l(c===d?f(0):c);e||(c=u(c));a.setTime(+c);g(2,[f(2)+(b-1)*7])}function n(a,b,c,d,f){var g=e.locales,h=g[e.defaultLocale]||{},i=x(s,a,f),c=(typeof c=="string"?g[c]:c)||{};return o(a,b,function(a){if(d)for(var b=(a==7?2:a)-1;b>=0;b--)d.push(i(b));return i(a)},function(a){return c[a]||h[a]},f)}function o(a,b,c,e,f){for(var g,h,i="";g=b.match(E);){i+=b.substr(0,g.index);if(g[1]){h=i;for(var i=a,j=g[1],k=c,l=e,m=f,n=j.length,q=void 0,r="";n>0;)q=p(i,j.substr(0,n),k,l,m),q!==d?(r+=q,j=j.substr(n),n=j.length):n--;i=h+(r+j)}else g[3]?(h=o(a,g[4],c,e,f),parseInt(h.replace(/\D/g,""),10)&&(i+=h)):i+=g[7]||"'";b=b.substr(g.index+g[0].length)}return i+b}function p(a,c,d,f,g){var h=e.formatters[c];if(typeof h=="string")return o(a,h,d,f,g);else if(typeof h=="function")return h(a,g||!1,f);switch(c){case"fff":return A(d(6),3);case"s":return d(5);case"ss":return A(d(5));case"m":return d(4);case"mm":return A(d(4));case"h":return d(3)%12||12;case"hh":return A(d(3)%12||12);case"H":return d(3);case"HH":return A(d(3));case"d":return d(2);case"dd":return A(d(2));case"ddd":return f("dayNamesShort")[d(7)]||"";case"dddd":return f("dayNames")[d(7)]||"";case"M":return d(1)+1;case"MM":return A(d(1)+1);case"MMM":return f("monthNamesShort")[d(1)]||"";case"MMMM":return f("monthNames")[d(1)]||"";case"yy":return(d(0)+"").substring(2);case"yyyy":return d(0);case"t":return q(d,f).substr(0,1).toLowerCase();case"tt":return q(d,f).toLowerCase();case"T":return q(d,f).substr(0,1);case"TT":return q(d,f);case"z":case"zz":case"zzz":return g?c="Z":(f=a.getTimezoneOffset(),a=f<0?"+":"-",d=b.floor(b.abs(f)/60),f=b.abs(f)%60,g=d,c=="zz"?g=A(d):c=="zzz"&&(g=A(d)+":"+A(f)),c=a+g),c;case"w":return k(d);case"ww":return A(k(d));case"S":return c=d(2),c>10&&c<20?"th":["st","nd","rd"][c%10-1]||"th"}}function q(a,b){return a(3)<12?b("amDesignator"):b("pmDesignator")}function r(a){return!isNaN(+a[0])}function s(a,b,c){return a["get"+(b?"UTC":"")+B[c]]()}function t(a,b,c,d){a["set"+(b?"UTC":"")+B[c]].apply(a,d)}function u(b){return new a(b.getUTCFullYear(),b.getUTCMonth(),b.getUTCDate(),b.getUTCHours(),b.getUTCMinutes(),b.getUTCSeconds(),b.getUTCMilliseconds())}function v(b,c){return 32-(new a(F(b,c,32))).getUTCDate()}function w(a){return function(){return a.apply(d,[this].concat(y(arguments)))}}function x(a){var b=y(arguments,1);return function(){return a.apply(d,b.concat(y(arguments)))}}function y(a,b,e){return c.prototype.slice.call(a,b||0,e===d?a.length:e)}function z(a,b){for(var c=0;c<a.length;c++)b(a[c],c)}function A(a,b){b=b||2;for(a+="";a.length<b;)a="0"+a;return a}var B="FullYear,Month,Date,Hours,Minutes,Seconds,Milliseconds,Day,Year".split(","),C=["Years","Months","Days"],D=[12,31,24,60,60,1e3,1],E=/(([a-zA-Z])\2*)|(\((('.*?'|\(.*?\)|.)*?)\))|('(.*?)')/,F=a.UTC,G=a.prototype.toUTCString,H=e.prototype;H.length=1;H.splice=c.prototype.splice;H.getUTCMode=w(f);H.setUTCMode=w(g);H.getTimezoneOffset=function(){return f(this)?0:this[0].getTimezoneOffset()};z(B,function(a,b){H["get"+a]=function(){return s(this[0],f(this),b)};b!=8&&(H["getUTC"+a]=function(){return s(this[0],!0,b)});b!=7&&(H["set"+a]=function(a){h(this,b,a,arguments,f(this));return this},b!=8&&(H["setUTC"+a]=function(a){h(this,b,a,arguments,!0);return this},H["add"+(C[b]||a)]=function(a,c){i(this,b,a,c);return this},H["diff"+(C[b]||a)]=function(a){return j(this,a,b)}))});H.getWeek=function(){return k(x(s,this,!1))};H.getUTCWeek=function(){return k(x(s,this,!0))};H.setWeek=function(a,b){m(this,a,b,!1);return this};H.setUTCWeek=function(a,b){m(this,a,b,!0);return this};H.addWeeks=function(a){return this.addDays(Number(a)*7)};H.diffWeeks=function(a){return j(this,a,2)/7};e.parsers=[function(b,c,d){if(b=b.match(/^(\d{4})(-(\d{2})(-(\d{2})([T ](\d{2}):(\d{2})(:(\d{2})(\.(\d+))?)?(Z|(([-+])(\d{2})(:?(\d{2}))?))?)?)?)?$/)){var e=new a(F(b[1],b[3]?b[3]-1:0,b[5]||1,b[7]||0,b[8]||0,b[10]||0,b[12]?Number("0."+b[12])*1e3:0));b[13]?b[14]&&e.setUTCMinutes(e.getUTCMinutes()+(b[15]=="-"?1:-1)*(Number(b[16])*60+(b[18]?Number(b[18]):0))):c||(e=u(e));return d.setTime(+e)}}];e.parse=function(a){return+e(""+a)};H.toString=function(a,b,c){return a===d||!r(this)?this[0].toString():n(this,a,b,c,f(this))};H.toUTCString=H.toGMTString=function(a,b,c){return a===d||!r(this)?this[0].toUTCString():n(this,a,b,c,!0)};H.toISOString=function(){return this.toUTCString("yyyy-MM-dd'T'HH:mm:ss(.fff)zzz")};e.defaultLocale="";e.locales={"":{monthNames:"January,February,March,April,May,June,July,August,September,October,November,December".split(","),monthNamesShort:"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(","),dayNames:"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(","),dayNamesShort:"Sun,Mon,Tue,Wed,Thu,Fri,Sat".split(","),amDesignator:"AM",pmDesignator:"PM"}};e.formatters={i:"yyyy-MM-dd'T'HH:mm:ss(.fff)",u:"yyyy-MM-dd'T'HH:mm:ss(.fff)zzz"};z("getTime,valueOf,toDateString,toTimeString,toLocaleString,toLocaleDateString,toLocaleTimeString,toJSON".split(","),function(a){H[a]=function(){return this[0][a]()}});H.setTime=function(a){this[0].setTime(a);return this};H.valid=w(r);H.clone=function(){return new e(this)};H.clearTime=function(){return this.setHours(0,0,0,0)};H.toDate=function(){return new a(+this[0])};e.now=function(){return+(new a)};e.today=function(){return(new e).clearTime()};e.UTC=F;e.getDaysInMonth=v;if(typeof module!=="undefined"&&module.exports)module.exports=e;return e}(Date,Math,Array);
+
+        //these holds the actual dom table objects, and is used to identify what parts of the table that needs to be created.
+        var _cont; //container holding table
+        var _table; //the table
+        var _head; //table header
+        var _headSort; //table header sorting row
+        var _headFilter; //table header filter row
+        var _body; //table body
+        var _foot; //table footer
+
+        var _data;  //columns and rows
+        var _currPage = 1; //current page
+        var _pageSize; //current pagesize
+        var _totalPages; //total pages
+        var _currSortCol; //current sorting column
+        var _currSortFlip = false; //current sorting direction
+        var _currDpOp; //clicked datepicker operator
+        var _filterCols = {}; //array with current filters
+        var _filterTimeout; //timer for delayed filtering
+        var _uniqueCol; //reference to column with the unique property
+        var _uniqueCols = {}; //array with checked rows
+        var _checkToggleChecked = false; //check-all toggle state
+
+        /*
+         initialize the plugin.
+         */
+        priv.init = function () {
+            _cont = priv.options.id;
+            priv.options.types.string = ((priv.options.types || {}).string || {});
+            priv.options.types.number = ((priv.options.types || {}).number || {});
+            priv.options.types.bool = ((priv.options.types || {}).bool || {});
+            priv.options.types.date = ((priv.options.types || {}).date || {});
+
+            //fill the table with empty cells
+            if (priv.options.preFill) {
+                var data = {
+                    cols: {
+                        dummy: {
+                            index: 1,
+                            friendly: "&nbsp;",
+                            type: "string"
+                        }
+                    },
+                    rows: []
+                };
+                for (var i = 0; i < priv.options.pageSize; i++)
+                    data.rows.push({dummy: "&nbsp;"});
+                priv.setData(data);
+            }
+            //try call webservice for data
+            priv.update();
+        };
+
+        /*
+         creates the table with all its parts and handlers.
+         note that only the parts we need is created.
+         (yeah, the function is huge)
+         */
+        priv.createTable = function () {
+            var start = new priv.ext.XDate();
+
+            //create table itself
+            if (!_table) {
+                _head = _body = _foot = undefined;
+                _table = $('<table class="watable table table-striped table-hover table-bordered table-condensed"></table>').appendTo(_cont);
+            }
+
+            //create the header which will later hold both sorting and filtering
+            if (!_head) {
+                _table.find('thead').remove();
+                _headSort = _headFilter = undefined;
+                _head = $('<thead></thead>').prependTo(_table);
+            }
+
+            //sort the columns in index order
+            var colsSorted = Object.keys(_data.cols).sort(function (a, b) {
+                return _data.cols[a].index - _data.cols[b].index;
+            });
+
+            //create the header sorting row
+            if (!_headSort) {
+                _head.find('.sort i').tooltip('hide');
+                _head.find(".sort").remove();
+                _headSort = $('<tr class="sort"></tr>').prependTo(_head);
+
+                //create the checkall toggle
+                if (_uniqueCol && priv.options.checkboxes) {
+                    var checked = _checkToggleChecked ? 'checked' : '';
+                    var headCell = $('<th></th>').appendTo(_headSort);
+                    var elem = $('<input {0} class="checkToggle" type="checkbox" />'.f(checked)).appendTo(headCell);
+                    elem.on('change', priv.checkToggleChanged);
+                }
+
+                //create the sortable headers
+                for (var i = 0; i < colsSorted.length; i++) {
+                    var column = colsSorted[i];
+                    var props = _data.cols[column];
+
+                    if (!props.hidden) {
+                        var headCell = $('<th></th>').appendTo(_headSort);
+                        var link = $('<a class="pull-left" href="#">{0}</a>'.f(props.friendly || column));
+                        link.on('click', {column: column}, priv.columnClicked).appendTo(headCell);
+
+                        if (props.tooltip) {
+                            $('<i class="fa-info-sign"></i>').tooltip({
+                                title: props.tooltip.trim(),
+                                html: true,
+                                container: 'body',
+                                placement: "top",
+                                delay: {
+                                    show: 500,
+                                    hide: 100
+                                }
+                            }).appendTo(link);
+                        }
+
+                        //Add sort arrow
+                        if (column == _currSortCol) {
+                            if (_currSortFlip) $('<i class="fa fa-chevron-down pull-right"></i>').appendTo(headCell);
+                            else $('<i class="fa fa-chevron-up pull-right"></i>').appendTo(headCell);
+                        }
+                    }
+                }
+            }
+
+            //create the header filtering row
+            if (!_headFilter && priv.options.filter) {
+                _head.find(".filter").remove();
+                _headFilter = $('<tr class="filter"></tr>').appendTo(_head);
+                var headCell;
+                var elem;
+                var placeHolder = '';
+                var tooltip = '';
+
+                //create the filter checkbox
+                if (_uniqueCol && priv.options.checkboxes) {
+                    tooltip = priv.options.types.bool.filterTooltip || 'Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked';
+                    headCell = $('<th></th>').appendTo(_headFilter);
+                    elem = $('<input class="filter indeterminate" checked type="checkbox" />').appendTo(headCell);
+                    $.map(_filterCols, function (colProps, col) {
+                        if (col == "unique") {
+                            if (colProps.filter) elem.prop('checked', true).removeClass('indeterminate');
+                            else if (!colProps.filter) elem.prop('checked', false).removeClass('indeterminate');
+                            else if (colProps.filter == '') elem.addClass('indeterminate');
+                        }
+                    });
+
+                    if (tooltip) {
+                        elem.tooltip({
+                            title: tooltip.trim(),
+                            html: true,
+                            container: 'body',
+                            trigger: 'hover',
+                            placement: 'top',
+                            delay: {
+                                show: 500,
+                                hide: 100
+                            }
+                        });
+                    }
+                    elem.on('click', {column: "unique"}, priv.filterChanged);
+                }
+
+                //create the column filters
+                for (var i = 0; i < colsSorted.length; i++) {
+                    var column = colsSorted[i];
+                    var props = _data.cols[column];
+                    tooltip = props.filterTooltip === true ? undefined : props.filterTooltip === false ? '' : props.filterTooltip;
+                    placeHolder = props.placeHolder === true ? undefined : props.placeHolder === false ? '' : props.placeHolder;
+
+                    if (!props.hidden) {
+                        headCell = $('<th></th>').appendTo(_headFilter);
+
+                        switch (props.type || 'string') {
+                            case "number":
+                                if (placeHolder == undefined) placeHolder = priv.options.types.number.placeHolder;
+                                placeHolder = (placeHolder === true || placeHolder == undefined) ? '10..20 =50' : placeHolder === false ? '' : placeHolder;
+                                if (tooltip == undefined) tooltip = priv.options.types.number.filterTooltip;
+                                tooltip = (tooltip === true || tooltip == undefined) ? 'Values 10 to 20:<br/>10..20<br/>Values exactly 50:<br/>=50' : tooltip === false ? '' : tooltip;
+                                elem = $('<input placeholder="{0}" class="filter" type="text" />'.f(placeHolder));
+                                elem.on('keyup', {column: column}, priv.filterChanged);
+                                break;
+                            case "date":
+                                if (placeHolder == undefined) placeHolder = priv.options.types.date.placeHolder;
+                                placeHolder = (placeHolder === true || placeHolder == undefined) ? '-7..0' : placeHolder === false ? '' : placeHolder;
+                                if (tooltip == undefined) tooltip = priv.options.types.date.filterTooltip;
+                                tooltip = (tooltip === true || tooltip == undefined) ? 'Today:<br/>0..1<br/>A week today excluded:<br/>-7..0' : tooltip === false ? '' : tooltip;
+                                elem = $('<div><input placeholder="{0}" class="filter" type="text" /></div>'.f(placeHolder));
+
+                                if (priv.options.types.date.datePicker === true || priv.options.types.date.datePicker == undefined)
+                                {
+                                    if ($().datepicker)
+                                    {
+                                        elem.addClass('date-wrap');
+                                        var today = new priv.ext.XDate(false).setHours(0, 0, 0, 0).toString('yyyy-MM-dd');
+                                        var dp = $('<div style="float:right" class="date" data-date="{0}" data-date-format="{1}" />'.f(today, 'yyyy-mm-dd')).appendTo(elem);
+                                        $('<input style="display:none" type="text"  />').appendTo(dp);
+                                        $('<span class="add-on"><i class="fa fa-chevron-right"></i></span>').on('click', {op: "l"}, priv.dpOpChanged).appendTo(dp);
+                                        $('<span class="add-on"><i class="fa fa-chevron-left"></i></span>').on('click', {op: "r"}, priv.dpOpChanged).appendTo(dp);
+                                        dp.datepicker({weekStart:1});
+                                        dp.on('changeDate', {column: column, input: $('input.filter', elem)}, priv.dpClicked);
+                                    }
+                                    else
+                                    if (priv.options.debug) console.log('datepicker plugin not found');
+                                }
+                                elem.on('keyup', 'input.filter', {column: column}, priv.filterChanged);
+                                break;
+                            case "bool":
+                                if (tooltip == undefined) tooltip = priv.options.types.bool.filterTooltip;
+                                tooltip = (tooltip === true || tooltip == undefined) ? 'Toggle between:<br/>indeterminate,<br/>checked,<br/>unchecked' : tooltip === false ? '' : tooltip;
+                                elem = $('<input class="filter indeterminate" checked type="checkbox" />');
+                                elem.on('click', {column: column}, priv.filterChanged);
+                                break;
+                            case "string":
+                                if (placeHolder == undefined) placeHolder = priv.options.types.string.placeHolder;
+                                placeHolder = (placeHolder === true || placeHolder == undefined) ? 'John Doe' : placeHolder === false ? '' : placeHolder;
+                                if (tooltip == undefined) tooltip = priv.options.types.string.filterTooltip;
+                                tooltip = (tooltip === true || tooltip == undefined) ? 'Find John Doe:<br/>John Doe<br/>Find all but John Doe:<br/>!John Doe' : tooltip === false ? '' : tooltip;
+                                elem = $('<input placeholder="{0}" class="filter" type="text" />'.f(placeHolder));
+                                elem.on('keyup', {column: column}, priv.filterChanged);
+                                break;
+                            case "none":
+                                elem = $('<div>&nbsp;</div>');
+                                break;
+                        }
+
+                        if (tooltip) {
+                            elem.tooltip({
+                                title: tooltip.trim(),
+                                html: true,
+                                container: 'body',
+                                trigger: 'hover',
+                                placement: 'top',
+                                delay: {
+                                    show: 500,
+                                    hide: 100
+                                }
+                            });
+                        }
+
+                        if (elem && props.filter) {
+                            $.map(_filterCols, function (colProps, col) {
+                                if (col == column) {
+                                    if (colProps.col.type == 'bool') {
+                                        if (colProps.filter) elem.prop('checked', true).removeClass('indeterminate');
+                                        else if (!colProps.filter) elem.prop('checked', false).removeClass('indeterminate');
+                                        else if (colProps.filter == '') elem.addClass('indeterminate');
+                                    }
+                                    else elem.val(colProps.filter);
+                                }
+                            });
+                            elem.appendTo(headCell);
+                        }
+                    }
+                }
+            }
+
+            //create the body
+            if (!_body) {
+                _table.find('tbody').remove();
+                _body = $('<tbody></tbody>').insertAfter(_head);
+                _body.on('change', '.unique', priv.rowChecked);
+                _body.on('click', 'td', priv.rowClicked);
+
+                //find out what rows to show next...
+                var rowsAdded = 0;
+                _data.toRow = _data.fromRow + priv.options.pageSize;
+                if (_data.toRow > _data.rows.length)
+                    _data.toRow = _data.rows.length;
+
+                //slice out the chunk of data we need and create rows
+                $.each(_data.rows.slice(_data.fromRow, _data.toRow), function (index, props) {
+                    var row = $('<tr></tr>').appendTo(_body);
+
+                    //create checkbox
+                    if (_uniqueCol && priv.options.checkboxes) {
+                        var check = _uniqueCols[props[_uniqueCol]] != undefined ? 'checked' : '';
+                        var checkable = props['checkable'] === false ? 'disabled' : '';
+                        var cell = $('<td></td>').appendTo(row);
+                        $('<input class="unique" {0} {1} type="checkbox" />'.f(check, checkable)).appendTo(cell);
+                    }
+
+                    //create cells
+                    for (var i = 0; i < colsSorted.length; i++) {
+                        var key = colsSorted[i];
+                        var val = props[key];
+                        if (!_data.cols[key]) return;
+                        if (_data.cols[key].unique) row.data('unique', val);
+
+                        if (!_data.cols[key].hidden) {
+                            var cell = $('<td></td>').appendTo(row);
+                            cell.data('column', key);
+                            if (val === undefined) continue;
+
+                            var format = props[key + 'Format'] || _data.cols[key].format || '{0}';
+
+                            switch (_data.cols[key].type) {
+                                case "string":
+                                    cell.html(format.f(val));
+                                    break;
+                                case "number":
+                                    val = Number(val);
+                                    var forceDecimals = !isNaN(_data.cols[key].decimals);
+                                    if (forceDecimals) cell.html(format.f(val.toFixed(_data.cols[key].decimals)));
+                                    else {
+                                        (val || 0) % 1 === 0
+                                            ? cell.html(format.f(val))
+                                            : cell.html(format.f(val.toFixed(priv.options.types.number.decimals || 2)));
+                                    }
+                                    break;
+                                case "date":
+                                    val = new priv.ext.XDate(val, priv.options.types.date.utc === true).toString(priv.options.types.date.format || 'yyyy-MM-dd HH:mm:ss');
+                                    cell.html(format.f(val));
+                                    break;
+                                case "bool":
+                                    $('<input type="checkbox" {0} disabled />'.f(val ? "checked" : "")).appendTo(cell);
+                                    break;
+                            }
+                        }
+                    }
+                    rowsAdded++;
+
+                    //enough rows created?
+                    if (rowsAdded >= priv.options.pageSize) {
+                        _data.toRow = _data.fromRow + rowsAdded;
+                        return false;
+                    }
+                });
+
+                if (_currPage == 1) {
+                    _pageSize = rowsAdded;
+                    _totalPages = Math.round(Math.ceil(_data.rows.length / _pageSize));
+                }
+
+                //pad with empty rows if we're at last page.
+                if (_currPage == _totalPages) {
+                    while (rowsAdded < _pageSize) {
+                        var row = $('<tr></tr>').appendTo(_body);
+
+                        if (_uniqueCol && priv.options.checkboxes) {
+                            var cell = $('<td></td>').appendTo(row);
+                            $('<input disabled type="checkbox" />').appendTo(cell);
+                        }
+
+                        $.each(_data.cols, function (column, props) {
+                            if (!props.hidden) $('<td>&nbsp;</td>').appendTo(row);
+                        });
+                        rowsAdded++;
+                    }
+                }
+            }
+
+            //create the footer
+            if (!_foot) {
+                _table.find('tfoot').remove();
+                _foot = $('<tfoot></tfoot>').insertAfter(_body);
+
+                var footRow = $('<tr></tr>').appendTo(_foot);
+                var footCell = $('<td colspan="999"></td>').appendTo(footRow);
+
+                //create summary
+                if (_data.rows.length > 0)
+                    $('<p>{0}-{1} of {2}</p>'.f(_data.fromRow + 1, Math.min(_data.toRow, _data.rows.length), _data.rows.length)).appendTo(footCell);
+                else {
+                    $('<p>No results</p>').appendTo(footCell);
+                    _totalPages = 0;
+                }
+
+                //create the pager.
+                var lowerPage = _currPage - 2;
+                var upperPage = _currPage + 2;
+                if (upperPage > _totalPages) {
+                    var diff = upperPage - _totalPages;
+                    upperPage = _totalPages;
+                    lowerPage -= diff;
+                }
+                if (lowerPage < 1) lowerPage = 1;
+                if (upperPage < 5) upperPage = 5;
+
+                var footToolbar = $('<div class="btn-toolbar"></div>').appendTo(footCell);
+                var footDiv = $('<div class="btn-group"></div>').appendTo(footToolbar);
+                var footPagerDiv = $('<div ></div>').appendTo(footDiv);
+                var footPagerUl = $('<ul class="pagination pagination-sm"></ul>').appendTo(footPagerDiv);
+
+                $('<li class="{0}"><a href="#">«</a></li>'.f(_currPage == 1 ? 'disabled' : ''))
+                    .on('click', {pageIndex: _currPage - 1}, priv.pageChanged).appendTo(footPagerUl);
+
+                for (var i = lowerPage; i <= upperPage; i++) {
+                    var link;
+                    if (i != _currPage) link = $('<li class="{1}"><a href="#">{0}</a></li>'.f(i, i > _totalPages ? 'disabled' : ''));
+                    if (i == _currPage) link = $('<li class="active"><a href="#">{0}</a></li>'.f(i));
+
+                    if (link) {
+                        link.on('click', {pageIndex: i}, priv.pageChanged);
+                        link.appendTo(footPagerUl);
+                    }
+                }
+                $('<li class="{0}"><a href="#">»</a></li>'.f(_currPage == _totalPages ? 'disabled' : ''))
+                    .on('click', {pageIndex: _currPage + 1}, priv.pageChanged).appendTo(footPagerUl);
+
+                //create pagesize dropdown
+                if (priv.options.pageSizes.length) {
+                    var div = $('<div class="btn-group btn-group-sm dropup pagesize" style="float:right;"></div>').appendTo(footToolbar);
+                    var btn = $('<button class="btn  dropdown-toggle" data-toggle="dropdown" href="#">Rows&nbsp;</button>').appendTo(div);
+                    var span = $('<span class="caret"></span>').appendTo(btn);
+                    var ul = $('<ul class="dropdown-menu">').appendTo(div);
+
+                    $.each(priv.options.pageSizes, function (index, val) {
+                        var li = $('<li></li>').appendTo(ul);
+                        $('<a href="#">{0}</a>'.f(val)).appendTo(li);
+                    });
+                    div.on('click', 'a', priv.pageSizeChanged);
+                }
+
+                //create columnpicker dropdown
+                if (priv.options.columnPicker) {
+                    var div = $('<div class="btn-group dropup columnpicker" style="float:right;"></div>').appendTo(footToolbar);
+                    var btn = $('<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">Columns&nbsp;</button>').appendTo(div);
+                    var span = $('<span class="caret"></span>').appendTo(btn);
+                    var ul = $('<ul class="dropdown-menu">').appendTo(div);
+
+                    $.each(_data.cols, function (col, props) {
+                        if (props.type != "unique") {
+                            var li = $('<li></li>').appendTo(ul);
+                            $('<input {0} type="checkbox" title="{1}" value="{1}" >&nbsp;{2}</input>'.f(props.hidden ? '' : 'checked', col, props.friendly || col)).appendTo(li);
+                        }
+                    });
+                    div.on('click', 'input', priv.columnPickerClicked);
+                }
+
+                //create actions dropdown
+                if (priv.options.actions) {
+                    var div = $('<div class="btn-group dropup actions"></div>').appendTo(footToolbar);
+                    var btn = $('<button class="btn  dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-list"></i>&nbsp;</button>').appendTo(div);
+                    var span = $('<span class="caret"></span>').appendTo(btn);
+                    var ul = $('<ul class="dropdown-menu">').appendTo(div);
+
+                    if (priv.options.actions.filter) {
+                        var li = $('<li></li>').appendTo(ul);
+                        $('<input {0} type="checkbox" >&nbsp;Filter</input>'.f(priv.options.filter ? 'checked' : '')).appendTo(li);
+                        li.on('click', 'input', function (e) {
+                            priv.options.filter = !priv.options.filter;
+                            _head = undefined;
+                            priv.createTable();
+                        });
+                    }
+                    if (priv.options.actions.columnPicker) {
+                        var li = $('<li></li>').appendTo(ul);
+                        $('<input {0} type="checkbox" >&nbsp;ColumnPicker</input>'.f(priv.options.columnPicker ? 'checked' : '')).appendTo(li);
+                        li.on('click', 'input', function (e) {
+                            priv.options.columnPicker = !priv.options.columnPicker;
+                            _foot = undefined;
+                            priv.createTable();
+                        });
+                    }
+                    if (priv.options.actions.custom) {
+                        $.each(priv.options.actions.custom, function (index, val) {
+                            var li = $('<li></li>').appendTo(ul);
+                            $(val).appendTo(li);
+                        });
+                    }
+                }
+            }
+
+            if (_data.rows.length == 0 && priv.options.hidePagerOnEmpty)
+                $('.btn-toolbar', _foot).remove();
+            if (priv.options.debug)
+                console.log('table created in {0} ms.'.f(new priv.ext.XDate() - start));
+            if (typeof priv.options.tableCreated == 'function')
+                priv.options.tableCreated.call(_table.get(0), {table: _table.get(0)});
+
+        };
+
+        /*
+         calls the webservice(if defined).
+         */
+        priv.update = function (callback, skipCols, resetChecked) {
+            if (!priv.options.url) {
+                if (priv.options.debug) console.log('no url found');
+                return;
+            }
+
+            if (priv.options.debug) console.log('requesting data from url:{0} data:{1}'.f(priv.options.url, JSON.stringify(priv.options.urlData) || ''));
+            var start = new priv.ext.XDate();
+
+            $.ajax({
+                url: priv.options.url,
+                type: priv.options.urlPost ? 'POST' : 'GET',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: priv.options.urlData,
+                async: true,
+                success: function (data) {
+                    if (priv.options.debug) console.log('request finished in {0} ms.'.f(new priv.ext.XDate() - start));
+
+                    //assign the new data
+                    if (data.d && data.d.cols)
+                        priv.setData(data.d, skipCols, resetChecked);
+                    else
+                        priv.setData(data, skipCols, resetChecked);
+                    if (typeof callback == "function")
+                        callback.call(this);
+                },
+                error: function (err) {
+                    console.log('request error: '.f(err));
+                }
+            });
+        };
+
+        /*
+         assigns the new data.
+         */
+        priv.setData = function (pData, skipCols, resetChecked) {
+            var data = $.extend(true, {}, pData);
+            data.fromRow = _data && _data.fromRow || 0;
+            data.toRow = _data && _data.toRow || 0;
+
+            //use previous column definitions?
+            skipCols = skipCols || false;
+            if (skipCols) data.cols = _data.cols;
+            else _filterCols = {};
+
+            _data = data;
+            _data.rowsOrg = _data.rows;
+
+            //we might have more/less data now. Recalculate stuff.
+            if (_currPage > 1) {
+                _data.toRow = Math.min(_data.rows.length, _data.toRow);
+                _data.fromRow = _data.toRow - _pageSize;
+                _data.fromRow = Math.max(_data.fromRow, 0);
+                _currPage = Math.ceil(_data.fromRow / _pageSize) + 1;
+                _totalPages = Math.ceil(_data.rows.length / _pageSize);
+            } else {
+                _data.fromRow = 0;
+                if (priv.options.pageSize != -1)
+                    _data.toRow = _data.fromRow + priv.options.pageSize;
+                _data.toRow = Math.max(_data.toRow, _data.rows.length);
+            }
+
+            //wash the new data a bit
+            _uniqueCol = "";
+            $.each(_data.cols, function (col, props) {
+                //set sorting
+                if (!_currSortCol && props.sortOrder) {
+                    _currSortCol = col;
+                    _currSortFlip = props.sortOrder != "asc";
+                }
+
+                //default to string type if missing
+                if (!props.type) _data.cols[col].type = "string";
+
+                //if several unique columns is defined, use the first.
+                if (props.unique) {
+                    if (!_uniqueCol) _uniqueCol = col;
+                    else props.unique = false;
+                }
+
+                //if index property is missing, create one
+                if (!props.index) _data.cols[col].index = new priv.ext.XDate();
+                props.column = col;
+
+                //set any initial filter
+                if (!skipCols) {
+                    if (props.filter == undefined) props.filter = true;
+                    if (props.filter && typeof props.type != "bool" && typeof props.filter != "boolean") {
+                        _filterCols[col] = _filterCols[col] || {
+                            filter: String(props.filter),
+                            col: props
+                        };
+                    }
+                }
+            });
+
+            //keep any previously checked rows around?
+            if (resetChecked === true || resetChecked === undefined)
+                _uniqueCols = {};
+            else {
+                for (var key in _uniqueCols)
+                    _uniqueCols[key] = priv.getRow(key);
+            }
+
+            if (_uniqueCol) {
+                //create a unique column definition
+                _data.cols["unique"] = {
+                    column: "unique",
+                    type: "unique",
+                    index: -1,
+                    hidden: true
+                };
+
+                //add rows that needs to be pre-checked
+                $.each(_data.rows, function (index, row) {
+                    if (row["checked"] === true)
+                        _uniqueCols[row[_uniqueCol]] = row;
+                });
+            }
+
+            _head = undefined;
+            _body = undefined;
+            _foot = undefined;
+            priv.filter();
+            priv.sort();
+            priv.createTable();
+        };
+
+        /*
+         filters the data.
+         */
+        priv.filter = function () {
+            if (!priv.options.filter) return;
+            if (Object.keys(_filterCols).length == 0) return;
+
+            //get a fresh copy of the data
+            _data.rows = $.extend(true, {}, _data.rowsOrg);
+            var start = new priv.ext.XDate();
+
+            //for every column with a filter, run through the rows and return the matching rows
+            $.each(_filterCols, function (col, colProps) {
+                if (priv.options.debug) console.log('filtering on text:{0} col:{1} type:{2} '.f(colProps.filter, colProps.col.column, colProps.col.type));
+
+                switch (colProps.col.type) {
+                    case "string":
+                        _data.rows = $.map(_data.rows, function (row) {
+                            var val = String(row[col]);
+                            var filter = colProps.filter.toLowerCase();
+                            var ne = filter.charAt(0) == '!';
+                            if (ne) filter = filter.substring(1);
+                            var pos = val.toLowerCase().indexOf(filter);
+
+                            if ((pos == -1 && ne) || colProps.filter === '') return row;
+                            else if (row[col] != undefined && pos >= 0 && !ne) {
+                                if (!row[col + 'Format'] && !colProps.col.format) {
+                                    var pre = val.substring(0, pos);
+                                    var match = val.substring(pos, pos + colProps.filter.length);
+                                    var post = val.substring(pos + colProps.filter.length, row[col].length);
+                                    row[col + 'Format'] = '<span>{0}<span class="filter">{1}</span>{2}</span>'.f(pre, match, post);
+                                }
+                                return row;
+                            }
+                        });
+                        break;
+                    case "number":
+                    case "date":
+                        _data.rows = $.map(_data.rows, function (row) {
+                            var exp = colProps.filter.replace(/\s+/gi, ' ').split(' ');
+                            exp = $(exp).filter(function(){return this});
+                            var opArray = [">=", "<=", "..", ">", "<","!=", "="];
+                            var matches = 0;
+                            var illegal = true;
+
+                            $.each(exp, function (index, expr) {
+
+                                for (var i = 0; i < opArray.length; i++) {
+
+                                    var op = opArray[i];
+                                    var pos = expr.indexOf(op);
+                                    var lval = expr.substring(0, pos);
+                                    var rval = expr.substring(pos + op.length);
+
+                                    if (pos == -1) continue;
+
+                                    illegal = ((lval.length + rval.length) == 0);
+                                    lval = parseFloat(lval);
+                                    rval = parseFloat(rval);
+                                    if (isNaN(lval)) lval = Number.NEGATIVE_INFINITY;
+                                    if (isNaN(rval)) rval = Number.MAX_VALUE;
+
+                                    if (colProps.col.type == "date") {
+                                        var today = new priv.ext.XDate(priv.options.types.date.utc === true).setHours(0, 0, 0, 0);
+                                        lval = today - (lval * -1) * (60 * 60 * 24 * 1000);
+                                        rval = today - (rval * -1) * (60 * 60 * 24 * 1000);
+                                    }
+
+                                    switch (op) {
+                                        case ">":
+                                            if (row[col] > rval) matches++;
+                                            break;
+                                        case ">=":
+                                            if (row[col] >= rval) matches++;
+                                            break;
+                                        case "<":
+                                            if (row[col] < rval) matches++;
+                                            break;
+                                        case "<=":
+                                            if (row[col] <= rval) matches++;
+                                            break;
+                                        case "!=":
+                                            if (row[col] != rval) matches++;
+                                            break;    
+                                        case "=":
+                                            if (row[col] == rval) matches++;
+                                            break;
+                                        case "..":
+                                            if (colProps.col.type == "date") {
+                                                if (row[col] >= lval && row[col] < rval) matches++;
+                                            }
+                                            else {
+                                                if (row[col] >= lval && row[col] <= rval) matches++;
+                                            }
+                                            break;
+                                        default:
+                                            illegal = true;
+                                    }
+                                    break;
+                                }
+                            });
+                            if ((exp.length == 1 && illegal) ||
+                                (matches > 0 && illegal) ||
+                                matches == exp.length ||
+                                colProps.filter == '') return row;
+                        });
+                        break;
+                    case "bool":
+                        _data.rows = $.map(_data.rows, function (row) {
+                            if (colProps.filter === '') return row;
+                            if (row[col] != undefined && ((Boolean(row[col]) && colProps.filter) || (!Boolean(row[col]) && !colProps.filter))) return row;
+                        });
+                        break;
+                    case "unique":
+                        _data.rows = $.map(_data.rows, function (row) {
+                            if (colProps.filter === '') return row;
+                            var a = row[_uniqueCol];
+                            var b = _uniqueCols[a] ? _uniqueCols[a][_uniqueCol] : '';
+                            if ((colProps.filter && a === b) || (!colProps.filter && b === '')) return row;
+                        });
+                        break;
+                }
+                if (colProps.filter === '') delete _filterCols[colProps.col.column];
+            });
+            if (priv.options.debug) console.log('filtering finished in {0} ms.'.f(new priv.ext.XDate() - start));
+
+            _currPage = 1;
+            _data.fromRow = 0;
+            _body = undefined;
+            _foot = undefined;
+        };
+
+        /*
+         sorts the data on the current sorting column
+         */
+        priv.sort = function () {
+            if (!_data.cols[_currSortCol]) _currSortCol = "";
+            if (!_currSortCol) return;
+
+            var start = new priv.ext.XDate();
+            if (priv.options.debug) console.log('sorting on col:{0} order:{1}'.f(_currSortCol, _currSortFlip ? "desc" : "asc"));
+
+            var isString = (_data.cols[_currSortCol].type == "string");
+            _data.rows = _data.rows.sort(function (a, b) {
+
+                var valA = a[_currSortCol];
+                var valB = b[_currSortCol];
+
+                if (isString) {
+                    if (valA == undefined) valA = '';
+                    if (valB == undefined) valB = '';
+
+                    if (String(valA).toLowerCase() == String(valB).toLowerCase()) return 0;
+                    if (String(valA).toLowerCase() > String(valB).toLowerCase()) return _currSortFlip ? -1 : 1;
+                    else return _currSortFlip ? 1 : -1;
+                } else {
+                    if (valA == undefined) valA = Number.NEGATIVE_INFINITY;
+                    if (valB == undefined) valB = Number.NEGATIVE_INFINITY;
+
+                    if (valA == valB) return 0;
+                    if (valA > valB) return _currSortFlip ? -1 : 1;
+                    else return _currSortFlip ? 1 : -1;
+                }
+            });
+            if (priv.options.debug) console.log('sorting finished in {0} ms.'.f(new priv.ext.XDate() - start));
+        };
+
+        /*
+         helper that returns the underlying data by the unique value
+         */
+        priv.getRow = function (unique) {
+            var start = new priv.ext.XDate();
+            var row;
+            $.each(_data.rowsOrg, function (i, r) {
+                if (r[_uniqueCol] == unique) {
+                    row = r;
+                    return false;
+                }
+            });
+            if (priv.options.debug) console.log('row lookup finished in {0} ms.'.f(new priv.ext.XDate() - start));
+            return row;
+        };
+
+
+        /* Event Handlers
+         *************************************************************************/
+
+        /*
+         when: typing a filter
+         what: triggers filtering on the value
+         */
+        priv.filterChanged = function (e) {
+            //clear old timer if we're typing fast enough
+            if (_filterTimeout) {
+                clearTimeout(_filterTimeout);
+                if (priv.options.debug) console.log('filtering cancelled');
+            }
+
+            var filter = this.value;
+            var col = _data.cols[e.data.column];
+            var timeout = 200;
+
+            //boolean filters needs some special care
+            if (col.type == "bool" || col.type == "unique") {
+                timeout = 0;
+                var elem = $(this);
+                var cssClass = 'indeterminate';
+                if (elem.hasClass(cssClass)) {
+                    e.preventDefault();
+                    elem.removeClass(cssClass);
+                    filter = true;
+                } else {
+                    if (!elem.is(':checked')) {
+                        filter = false;
+                    } else {
+                        elem.addClass(cssClass);
+                        filter = '';
+                    }
+                }
+            }
+
+            //add the filter to the filter array
+            _filterCols[col.column] = {
+                filter: filter,
+                col: col
+            };
+
+            //wait a few deciseconds before filtering
+            _filterTimeout = setTimeout(function () {
+                _filterTimeout = undefined;
+                priv.filter();
+                priv.sort();
+                priv.createTable();
+            }, timeout);
+        };
+
+        /*
+         when: changing page in pager
+         what: triggers table to be created with new page
+         */
+        priv.pageChanged = function (e) {
+            e.preventDefault();
+            if (e.data.pageIndex < 1 || e.data.pageIndex > _totalPages) return;
+
+            //set the new page
+            _currPage = e.data.pageIndex;
+            if (priv.options.debug) console.log('paging to index:{0}'.f(_currPage));
+
+            //find out what rows to create
+            _data.fromRow = ((_currPage - 1) * _pageSize);
+            _data.toRow = _data.fromRow + _pageSize;
+            if (_data.toRow > _data.rows.length) _data.toRow = _data.rows.length;
+
+            //trigger callback
+            if (typeof priv.options.pageChanged == 'function') {
+                priv.options.pageChanged.call(e.target, {
+                    event: e,
+                    page: _currPage
+                });
+            }
+
+            _body = undefined;
+            _foot = undefined;
+            priv.createTable();
+        };
+
+        /*
+         when: changing pagesize in pagesize dropdown
+         what: triggers table to be created with new pagesize
+         */
+        priv.pageSizeChanged = function (e) {
+            e.preventDefault();
+            var val = $(this).text().toLowerCase();
+            if (priv.options.debug) console.log('pagesize changed to:{0}'.f(val));
+
+            //set the new pagesize
+            if (val == "all") priv.options.pageSize = _data.rows.length;
+            else priv.options.pageSize = parseInt(val);
+
+            //revert to first page, as its gets messy otherwise.
+            _currPage = 1;
+            _data.fromRow = 0;
+            _data.toRow = _data.fromRow + priv.options.pageSize;
+            if (_data.toRow > _data.rows.length) _data.toRow = _data.rows.length;
+
+            //trigger callback
+            if (typeof priv.options.pageSizeChanged == 'function') {
+                priv.options.pageSizeChanged.call(e.target, {
+                    event: e,
+                    pageSize: priv.options.pageSize
+                });
+            }
+
+            _body = undefined;
+            _foot = undefined;
+            priv.createTable();
+        };
+
+        /*
+         when: clicking a column
+         what: triggers table to be sorted by the column
+         */
+        priv.columnClicked = function (e) {
+            e.preventDefault();
+            if (priv.options.debug) console.log('col:{0} clicked'.f(e.data.column));
+
+            //set the new sorting column
+            if (_currSortCol == e.data.column) _currSortFlip = !_currSortFlip;
+            _currSortCol = e.data.column;
+
+            //trigger callback
+            if (typeof priv.options.columnClicked == 'function') {
+                priv.options.columnClicked.call(e.target, {
+                    event: e,
+                    column: _data.cols[_currSortCol],
+                    descending: _currSortFlip
+                });
+            }
+
+            _headSort = undefined;
+            _body = undefined;
+            priv.sort();
+            priv.createTable();
+        };
+
+        /*
+         when: clicking a column in columnpicker
+         what: triggers table to show/hide the column
+         */
+        priv.columnPickerClicked = function (e) {
+            e.stopPropagation();
+
+            var elem = $(this);
+            var col = elem.val();
+            if (priv.options.debug) console.log('col:{0} {1}'.f(col, elem.is(':checked') ? 'checked' : 'unchecked'));
+
+            //toggle column visibility
+            _data.cols[col].hidden = !_data.cols[col].hidden;
+
+            _data.cols[col].index = new priv.ext.XDate();
+            _head = undefined;
+            _body = undefined;
+            priv.createTable();
+        };
+
+        /*
+         when: clicking the check-all checkbox
+         what: toggles checked state on all rows, and adds/removes them from checked array
+         */
+        priv.checkToggleChanged = function (e) {
+            var elem = $(this);
+
+            if (elem.is(':checked')) {
+                var start = new priv.ext.XDate();
+                //for every row(except non checkables), add it to the checked array
+                $.each(_data.rows, function (index, props) {
+                    var row = _data.rows[index];
+                    if (row.checkable === false) return;
+                    _uniqueCols[props[_uniqueCol]] = row;
+                });
+                if (priv.options.debug) console.log('{0} rows checked in {1} ms.'.f(_data.rows.length, new priv.ext.XDate() - start));
+                _checkToggleChecked = true;
+            }
+            else {
+                var start = new priv.ext.XDate();
+                //for every checked row(except non checkables), remove it from checked array
+                for (var key in _uniqueCols) {
+                    var row = _uniqueCols[key];
+                    if (row.checkable === false)
+                        continue;
+                    else
+                        delete _uniqueCols[key];
+                }
+                if (priv.options.debug) console.log('{0} rows unchecked in {1} ms.'.f(_data.rows.length, new priv.ext.XDate() - start));
+                _checkToggleChecked = false;
+            }
+            _body = undefined;
+            priv.createTable();
+        };
+
+        /*
+         when: clicking a row checkbox
+         what: toggles checked state on row, and add/removes it from checked array
+         */
+        priv.rowChecked = function (e) {
+            var elem = $(this);
+
+            //get the row's unique value
+            var unique = elem.closest('tr').data('unique');
+            if (priv.options.debug) console.log('row({0}) {1}'.f(unique, elem.is(':checked') ? 'checked' : 'unchecked'));
+
+            //store the row in checked array
+            if (elem.is(':checked')) _uniqueCols[unique] = priv.getRow(unique);
+            else delete _uniqueCols[unique];
+        };
+
+        /*
+         when: clicking anywhere on a row
+         what: row data and other info is returned to caller
+         */
+        priv.rowClicked = function (e) {
+            if (!_uniqueCol) {
+                if (priv.options.debug) console.log('no unique column specified');
+                return;
+            }
+
+            //gather callback data
+            var elem = $(this);
+            var column = _data.cols[elem.data('column')];
+            var unique = elem.closest('tr').data('unique');
+            var row = priv.getRow(unique);
+            var isChecked = elem.closest('tr').find('.unique').is(':checked');
+
+            //trigger callback
+            if (typeof priv.options.rowClicked == 'function') {
+                priv.options.rowClicked.call(e.target, {
+                    event: e,
+                    row: row,
+                    column: column,
+                    checked: isChecked
+                });
+            }
+
+        };
+
+        /*
+         when: clicking a datepicker operator
+         what: sets the datepicker operator before a datepicker date is chosen.
+         */
+        priv.dpOpChanged = function(e) {
+            if (priv.options.debug) console.log('dp oper:{0} clicked'.f(e.data.op));
+            e.preventDefault();
+            _currDpOp = e.data.op;
+        };
+
+        /*
+         when: clicking a datepicker date
+         what: triggers filtering on the date
+         */
+        priv.dpClicked = function (e) {
+            if (priv.options.debug) console.log('dp date:{0} clicked'.f(new priv.ext.XDate(e.date, priv.options.types.date.utc === true).toString('yyyy-MM-dd')));
+
+            e.preventDefault();
+            input = $(this).prev('input.filter').get(0);
+            Placeholders.disable(input); //Remove date placeholders for IE
+
+            var today = new priv.ext.XDate(false).setHours(0, 0, 0, 0);
+            var daysDiff = Math.floor(e.date / (60 * 60 * 24 * 1000)) - Math.floor(today / (60 * 60 * 24 * 1000));
+
+            var filter = $(e.data.input);
+            var op = "..";
+            var pos = filter.val().indexOf(op);
+            var lval = filter.val().substring(0, pos);
+            var rval = filter.val().substring(pos + op.length);
+
+            if (_currDpOp == "l") lval = daysDiff;
+            if (_currDpOp == "r") rval = daysDiff;
+
+            filter.val("{0}{1}{2}".f(lval, op, rval));
+            Placeholders.enable(input);
+            $(this).datepicker('hide');
+            filter.trigger('keyup');
+        };
+
+
+        /* Public API
+         *************************************************************************/
+
+        publ.init = function (options) {
+            if (priv.options.debug) console.log('watable initialization...');
+            //merge supplied options with defaults
+            $.extend(priv.options, defaults, options);
+            priv.init();
+            return publ;
+        };
+
+        publ.update = function (callback, skipCols, resetChecked) {
+            if (priv.options.debug) console.log('publ.update called');
+            priv.update(callback, skipCols, resetChecked);
+            return publ;
+        };
+
+        publ.getData = function (checked, filtered) {
+            if (priv.options.debug) console.log('publ.getData called');
+            checked = checked || false;
+            filtered = filtered || false;
+
+            var data = $.extend(true, {}, _data);
+            delete data.cols["unique"];
+
+            $.each(data.cols, function(col) {
+                if (_filterCols[col]) data.cols[col].filter = _filterCols[col].filter;
+            });
+
+            if (!filtered) {
+                delete data.rows;
+                data.rows = data.rowsOrg;
+            }
+            delete data.rowsOrg;
+            delete data.fromRow;
+            delete data.toRow;
+
+            if (checked) {
+                delete data.rows;
+                data.rows = $.map(_uniqueCols, function (val, index) {
+                    return val;
+                });
+            }
+            return data;
+        };
+
+        publ.setData = function (data, skipCols, resetChecked) {
+            if (priv.options.debug) console.log('publ.setData called');
+            priv.setData(data, skipCols, resetChecked);
+            return publ;
+        };
+
+        publ.option = function (option, val) {
+            if (priv.options.debug) console.log('publ.option called');
+            if (val == undefined) return priv.options[option];
+            priv.options[option] = val;
+            _head = undefined;
+            _body = undefined;
+            _foot = undefined;
+            priv.createTable();
+            return publ;
+        };
+
+        return publ;
+    };
+
+    $.fn.WATable = function (options) {
+        options = options || {};
+        return this.each(function () {
+            options.id = this;
+            $(this).data('WATable', new WATable().init(options));
+        });
+    };
+
+    String.prototype.format = String.prototype.f = function () {
+        var s = this;
+        i = arguments.length;
+        while (i--) s = s.replace(new RegExp('\\{' + i + '\\}', 'gm'), arguments[i]);
+        return s;
+    };
+
+    //IE Polyfills
+    /* placeholders.js */ (function(t){"use strict";function e(t,e,r){return t.addEventListener?t.addEventListener(e,r,!1):t.attachEvent?t.attachEvent("on"+e,r):void 0}function r(t,e){var r,n;for(r=0,n=t.length;n>r;r++)if(t[r]===e)return!0;return!1}function n(t,e){var r;t.createTextRange?(r=t.createTextRange(),r.move("character",e),r.select()):t.selectionStart&&(t.focus(),t.setSelectionRange(e,e))}function a(t,e){try{return t.type=e,!0}catch(r){return!1}}t.Placeholders={Utils:{addEventListener:e,inArray:r,moveCaret:n,changeType:a}}})(this),function(t){"use strict";function e(t){var e;return t.value===t.getAttribute(S)&&"true"===t.getAttribute(I)?(t.setAttribute(I,"false"),t.value="",t.className=t.className.replace(R,""),e=t.getAttribute(P),e&&(t.type=e),!0):!1}function r(t){var e,r=t.getAttribute(S);return""===t.value&&r?(t.setAttribute(I,"true"),t.value=r,t.className+=" "+k,e=t.getAttribute(P),e?t.type="text":"password"===t.type&&H.changeType(t,"text")&&t.setAttribute(P,"password"),!0):!1}function n(t,e){var r,n,a,u,i;if(t&&t.getAttribute(S))e(t);else for(r=t?t.getElementsByTagName("input"):v,n=t?t.getElementsByTagName("textarea"):b,i=0,u=r.length+n.length;u>i;i++)a=r.length>i?r[i]:n[i-r.length],e(a)}function a(t){n(t,e)}function u(t){n(t,r)}function i(t){return function(){f&&t.value===t.getAttribute(S)&&"true"===t.getAttribute(I)?H.moveCaret(t,0):e(t)}}function l(t){return function(){r(t)}}function c(t){return function(e){return p=t.value,"true"===t.getAttribute(I)?!(p===t.getAttribute(S)&&H.inArray(C,e.keyCode)):void 0}}function o(t){return function(){var e;"true"===t.getAttribute(I)&&t.value!==p&&(t.className=t.className.replace(R,""),t.value=t.value.replace(t.getAttribute(S),""),t.setAttribute(I,!1),e=t.getAttribute(P),e&&(t.type=e)),""===t.value&&(t.blur(),H.moveCaret(t,0))}}function s(t){return function(){t===document.activeElement&&t.value===t.getAttribute(S)&&"true"===t.getAttribute(I)&&H.moveCaret(t,0)}}function d(t){return function(){a(t)}}function g(t){t.form&&(x=t.form,x.getAttribute(U)||(H.addEventListener(x,"submit",d(x)),x.setAttribute(U,"true"))),H.addEventListener(t,"focus",i(t)),H.addEventListener(t,"blur",l(t)),f&&(H.addEventListener(t,"keydown",c(t)),H.addEventListener(t,"keyup",o(t)),H.addEventListener(t,"click",s(t))),t.setAttribute(j,"true"),t.setAttribute(S,y),r(t)}var v,b,f,h,p,m,A,y,E,x,T,N,L,w=["text","search","url","tel","email","password","number","textarea"],C=[27,33,34,35,36,37,38,39,40,8,46],B="#ccc",k="placeholdersjs",R=RegExp("\\b"+k+"\\b"),S="data-placeholder-value",I="data-placeholder-active",P="data-placeholder-type",U="data-placeholder-submit",j="data-placeholder-bound",V="data-placeholder-focus",q="data-placeholder-live",z=document.createElement("input"),D=document.getElementsByTagName("head")[0],F=document.documentElement,G=t.Placeholders,H=G.Utils;if(void 0===z.placeholder){for(v=document.getElementsByTagName("input"),b=document.getElementsByTagName("textarea"),f="false"===F.getAttribute(V),h="false"!==F.getAttribute(q),m=document.createElement("style"),m.type="text/css",A=document.createTextNode("."+k+" { color:"+B+"; }"),m.styleSheet?m.styleSheet.cssText=A.nodeValue:m.appendChild(A),D.insertBefore(m,D.firstChild),L=0,N=v.length+b.length;N>L;L++)T=v.length>L?v[L]:b[L-v.length],y=T.getAttribute("placeholder"),y&&H.inArray(w,T.type)&&g(T);E=setInterval(function(){for(L=0,N=v.length+b.length;N>L;L++)T=v.length>L?v[L]:b[L-v.length],y=T.getAttribute("placeholder"),y&&H.inArray(w,T.type)&&(T.getAttribute(j)||g(T),(y!==T.getAttribute(S)||"password"===T.type&&!T.getAttribute(P))&&("password"===T.type&&!T.getAttribute(P)&&H.changeType(T,"text")&&T.setAttribute(P,"password"),T.value===T.getAttribute(S)&&(T.value=y),T.setAttribute(S,y)));h||clearInterval(E)},100)}G.disable=a,G.enable=u}(this);
+    Object.keys = Object.keys || function(o) { var result = []; for(var name in o) {  if (o.hasOwnProperty(name)) result.push(name); } return result; };
+    String.prototype.trim = String.prototype.trim || function () { return this.replace(/^\s+|\s+$/g,''); };
+    Date.now = Date.now || function() { return +new Date; };
+    console = window.console || { log:function(){} };
+
+})(jQuery);
